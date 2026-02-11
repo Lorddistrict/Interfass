@@ -1,5 +1,7 @@
-package io.realmit.interfass;
+package io.realmit.interfass.listener;
 
+import io.realmit.interfass.services.InterfassLogger;
+import io.realmit.interfass.menu.InterfassMenu;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -13,20 +15,21 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
-public final class InterfassItemListener implements Listener
-{
-    // Configure your special item here
+public final class InterfassItemListener implements Listener {
     private static final Material ITEM_MATERIAL = Material.NETHER_STAR;
     private static final Component ITEM_NAME = Component.text("Open the Interfass menu");
 
+    private final InterfassLogger logger;
     private final InterfassMenu menu;
 
-    public InterfassItemListener(@NotNull InterfassMenu menu)
-    {
+    public InterfassItemListener(
+            @NotNull InterfassLogger logger,
+            @NotNull InterfassMenu menu
+    ) {
+        this.logger = logger;
         this.menu = menu;
     }
 
-    // Give the item when the player joins
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
@@ -35,7 +38,6 @@ public final class InterfassItemListener implements Listener
         meta.displayName(ITEM_NAME);
         item.setItemMeta(meta);
 
-        // Put it in hotbar slot 0 if empty, otherwise just add
         if (player.getInventory().getItem(0) == null) {
             player.getInventory().setItem(0, item);
         } else {
@@ -43,10 +45,8 @@ public final class InterfassItemListener implements Listener
         }
     }
 
-    // Open the GUI when the player right‑clicks with that item
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
-        // Only main‑hand interactions (avoid double‑fire with off‑hand)
         if (event.getHand() != EquipmentSlot.HAND) {
             return;
         }
@@ -63,10 +63,10 @@ public final class InterfassItemListener implements Listener
 
         ItemMeta meta = item.getItemMeta();
         if (meta == null || !ITEM_NAME.equals(meta.displayName())) {
-            return; // make sure it's *our* item, not any Nether Star
+            return;
         }
 
-        event.setCancelled(true); // prevent default use
+        event.setCancelled(true);
         menu.open(event.getPlayer());
     }
 }

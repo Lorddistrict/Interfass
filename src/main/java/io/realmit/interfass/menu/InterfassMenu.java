@@ -1,4 +1,4 @@
-package io.realmit.interfass;
+package io.realmit.interfass.menu;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -10,7 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
-public final class InterfassMenu
+public final class InterfassMenu implements InterfassMenuInterface
 {
     private static final int SIZE = 27; // 3 rows of 9
     private static final int CENTER_SLOT = 13;

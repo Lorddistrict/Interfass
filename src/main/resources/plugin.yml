@@ -8,6 +8,10 @@ commands:
     description: Open the Interfass interface
     usage: /interfass
     permission: interfass.use
+  teleport:
+    description: Open the Interfass teleport interface
+    usage: /teleport
+    permission: interfass.use
 
 permissions:
   interfass.use:
