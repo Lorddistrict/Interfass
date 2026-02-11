@@ -1,0 +1,15 @@
+name: Interfass
+version: '1.0-SNAPSHOT'
+main: io.realmit.interfass.Interfass
+api-version: '1.21'
+
+commands:
+  interfass:
+    description: Open the Interfass interface
+    usage: /interfass
+    permission: interfass.use
+
+permissions:
+  interfass.use:
+    description: Allows using /interfass
+    default: true
