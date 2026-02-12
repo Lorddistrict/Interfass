@@ -1,0 +1,57 @@
+menu:
+  title: "Interfass Menu"
+  size: 54 # must be multiple of 9
+
+  items:
+    0:
+      slot: 10
+      material: DIAMOND
+      name:
+        - text: "Quest #1"
+          color: GOLD
+        - text: "(Difficile)"
+          color: GRAY
+      lore:
+        - text: "Lore for quest #1"
+          color: RED
+        - text: "Lore line n°2"
+          color: DARK_BLUE
+    1:
+      slot: 11
+      material: DIAMOND
+      name:
+        - text: "Quest #1"
+          color: GOLD
+        - text: "(Difficile)"
+          color: GRAY
+      lore:
+        - text: "Lore for quest #1"
+          color: RED
+        - text: "Lore line n°2"
+          color: DARK_BLUE
+    2:
+      slot: 19
+      material: DIAMOND
+      name:
+        - text: "Quest #1"
+          color: GOLD
+        - text: "(Difficile)"
+          color: GRAY
+      lore:
+        - text: "Lore for quest #1"
+          color: RED
+        - text: "Lore line n°2"
+          color: DARK_BLUE
+    3:
+      slot: 20
+      material: DIAMOND
+      name:
+        - text: "Quest #1"
+          color: GOLD
+        - text: "(Difficile)"
+          color: GRAY
+      lore:
+        - text: "Lore for quest #1"
+          color: RED
+        - text: "Lore line n°2"
+          color: DARK_BLUE

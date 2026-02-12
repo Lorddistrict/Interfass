@@ -1,9 +1,11 @@
 package io.realmit.interfass;
 
 import io.realmit.interfass.command.InterfassCommand;
+import io.realmit.interfass.config.QuestMenuConfig;
 import io.realmit.interfass.listener.InterfassItemListener;
 import io.realmit.interfass.listener.InterfassItemListenerTeleport;
 import io.realmit.interfass.listener.InterfassTeleportClickListener;
+import io.realmit.interfass.listener.passQuest.InterfassPassQuestListener;
 import io.realmit.interfass.menu.InterfassMenu;
 import io.realmit.interfass.menu.InterfassTeleportMenu;
 import io.realmit.interfass.menu.passQuests.InterfassPassQuestsMenu;
@@ -12,6 +14,7 @@ import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Interfass extends JavaPlugin {
+
     @Override
     public void onEnable() {
         InterfassLogger logger = new InterfassLogger(this);
@@ -19,8 +22,11 @@ public final class Interfass extends JavaPlugin {
         logger.separator();
         logger.info("[INTERFASS] > Initialization complete.");
 
-        // ----
+        // ---- custom configs
+        //this.saveDefaultConfig(); // if you also use config.yml
+        QuestMenuConfig questMenuConfig = new QuestMenuConfig(this);
 
+        // ---- interfassMenu
         InterfassMenu interfassMenu = new InterfassMenu();
         PluginCommand cmd = getCommand("interfass");
 
@@ -32,8 +38,7 @@ public final class Interfass extends JavaPlugin {
 
         cmd.setExecutor(new InterfassCommand(interfassMenu));
 
-        // ----
-
+        // ---- interfassTeleportMenu
         InterfassTeleportMenu interfassTeleportMenu = new InterfassTeleportMenu();
         cmd = getCommand("teleport");
 
@@ -45,9 +50,8 @@ public final class Interfass extends JavaPlugin {
 
         cmd.setExecutor(new InterfassCommand(interfassTeleportMenu));
 
-        // ----
-
-        InterfassPassQuestsMenu interfassPassQuestsMenu = new InterfassPassQuestsMenu();
+        // ---- interfassPassQuestsMenu
+        InterfassPassQuestsMenu interfassPassQuestsMenu = new InterfassPassQuestsMenu(questMenuConfig);
         cmd = getCommand("quest");
 
         if (null == cmd) {
@@ -58,10 +62,10 @@ public final class Interfass extends JavaPlugin {
 
         cmd.setExecutor(new InterfassCommand(interfassPassQuestsMenu));
 
-        // ----
-
+        // ---- events
         getServer().getPluginManager().registerEvents(new InterfassItemListener(logger, interfassMenu), this);
         getServer().getPluginManager().registerEvents(new InterfassItemListenerTeleport(logger), this);
         getServer().getPluginManager().registerEvents(new InterfassTeleportClickListener(), this);
+        getServer().getPluginManager().registerEvents(new InterfassPassQuestListener(), this);
     }
 }

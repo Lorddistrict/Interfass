@@ -12,10 +12,10 @@ public class InterfassItem {
 
     public ItemStack getItem(
             ItemStack itemStack,
-            ArrayList<String> itemNames,
-            ArrayList<NamedTextColor> itemNamesColor,
-            ArrayList<String> itemLores,
-            ArrayList<NamedTextColor> itemLoresColor
+            List<String> itemNames,
+            List<NamedTextColor> itemNamesColor,
+            List<String> itemLores,
+            List<NamedTextColor> itemLoresColor
     ) {
         if (!this.isValidItemData(itemNames, itemNamesColor, itemLores, itemLoresColor)) {
             return itemStack;
@@ -28,8 +28,8 @@ public class InterfassItem {
 
     private ItemStack setItemNamesAndColors(
             ItemStack itemStack,
-            ArrayList<String> itemNames,
-            ArrayList<NamedTextColor> itemNamesColor
+            List<String> itemNames,
+            List<NamedTextColor> itemNamesColor
     ) {
         ItemMeta meta = itemStack.getItemMeta();
         Component name = Component.text().asComponent();
@@ -50,8 +50,8 @@ public class InterfassItem {
 
     private ItemStack setItemLoresAndColors(
             ItemStack itemStack,
-            ArrayList<String> itemLores,
-            ArrayList<NamedTextColor> itemLoresColor
+            List<String> itemLores,
+            List<NamedTextColor> itemLoresColor
     ) {
         ItemMeta meta = itemStack.getItemMeta();
         List<Component> coloredLores = new ArrayList<>();
@@ -67,10 +67,10 @@ public class InterfassItem {
     }
 
     private boolean isValidItemData(
-            ArrayList<String> itemNames,
-            ArrayList<NamedTextColor> itemNamesColor,
-            ArrayList<String> itemLores,
-            ArrayList<NamedTextColor> itemLoresColor
+            List<String> itemNames,
+            List<NamedTextColor> itemNamesColor,
+            List<String> itemLores,
+            List<NamedTextColor> itemLoresColor
     ) {
         if (itemNames.size() != itemNamesColor.size()) {
             return false;
