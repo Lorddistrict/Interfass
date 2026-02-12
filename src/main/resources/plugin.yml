@@ -14,6 +14,11 @@ commands:
     usage: /teleport
     permission: interfass.command.teleport
 
+  quest:
+    description: Open the Interfass quest interface
+    usage: /quest
+    permission: interfass.command.quest
+
 permissions:
   interfass.command.main:
     description: Allows using /interfass:interfass
@@ -21,8 +26,12 @@ permissions:
 
   interfass.command.teleport:
     description: Allows using /interfass:teleport
-    default: op
+    default: true
 
   interfass.menu.teleport:
     description: Allows opening the Interfass teleport menu
-    default: op
+    default: true
+
+  interfass.menu.quest:
+    description: Allows opening the Interfass quest menu
+    default: true
