@@ -12,13 +12,13 @@ import java.util.List;
 
 public final class InterfassMenu implements InterfassMenuInterface
 {
-    private static final int SIZE = 27; // 3 rows of 9
+    private static final int LINE = 9;
     private static final int CENTER_SLOT = 13;
     private static final int FIRST_SLOT = 1;
 
     public void open(Player player)
     {
-        Inventory inventory = Bukkit.createInventory(null, SIZE, Component.text("Interfass Menu"));
+        Inventory inventory = Bukkit.createInventory(null, LINE*6, Component.text("Interfass Menu"));
 
         ItemStack diamond = new ItemStack(Material.DIAMOND);
         ItemMeta meta = diamond.getItemMeta();

@@ -7,13 +7,22 @@ commands:
   interfass:
     description: Open the Interfass interface
     usage: /interfass
-    permission: interfass.use
+    permission: interfass.command.main
+
   teleport:
     description: Open the Interfass teleport interface
     usage: /teleport
-    permission: interfass.use
+    permission: interfass.command.teleport
 
 permissions:
-  interfass.use:
-    description: Allows using /interfass
+  interfass.command.main:
+    description: Allows using /interfass:interfass
     default: true
+
+  interfass.command.teleport:
+    description: Allows using /interfass:teleport
+    default: op
+
+  interfass.menu.teleport:
+    description: Allows opening the Interfass teleport menu
+    default: op
