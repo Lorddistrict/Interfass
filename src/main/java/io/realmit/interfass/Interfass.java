@@ -1,5 +1,6 @@
 package io.realmit.interfass;
 
+import io.realmit.interfass.api.http.ApiServer;
 import io.realmit.interfass.command.InterfassCommand;
 import io.realmit.interfass.config.QuestMenuConfig;
 import io.realmit.interfass.listener.InterfassItemListener;
@@ -22,6 +23,16 @@ public final class Interfass extends JavaPlugin {
 
         logger.separator();
         logger.info("[INTERFASS] > Initialization complete.");
+
+        // >>> API
+        ApiServer apiServer = new ApiServer(this, 8081);
+        try {
+            apiServer.start();
+        } catch (Exception e) {
+            getLogger().severe("Failed to start API server: " + e.getMessage());
+            e.printStackTrace();
+        }
+        // <<< API
 
         // ---- custom configs
         //this.saveDefaultConfig(); // if you also use config.yml
