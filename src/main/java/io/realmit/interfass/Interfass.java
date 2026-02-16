@@ -8,6 +8,7 @@ import io.realmit.interfass.listener.InterfassTeleportClickListener;
 import io.realmit.interfass.listener.passQuest.InterfassPassQuestListener;
 import io.realmit.interfass.menu.InterfassMenu;
 import io.realmit.interfass.menu.InterfassTeleportMenu;
+import io.realmit.interfass.menu.negative.InterfassNegativeMenu;
 import io.realmit.interfass.menu.passQuests.InterfassPassQuestsMenu;
 import io.realmit.interfass.services.InterfassLogger;
 import org.bukkit.command.PluginCommand;
@@ -61,6 +62,17 @@ public final class Interfass extends JavaPlugin {
         }
 
         cmd.setExecutor(new InterfassCommand(interfassPassQuestsMenu));
+
+        // >>> interfassNegativeMenu
+        InterfassNegativeMenu interfassNegativeMenu = new InterfassNegativeMenu();
+        cmd = getCommand("negative");
+        if (null == cmd) {
+            logger.separator();
+            getLogger().severe("Command 'interfass:negative' not found in plugin.yml, disabling plugin.");
+            return;
+        }
+        cmd.setExecutor(new InterfassCommand(interfassNegativeMenu));
+        // <<< interfassNegativeMenu
 
         // ---- events
         getServer().getPluginManager().registerEvents(new InterfassItemListener(logger, interfassMenu), this);

@@ -19,6 +19,11 @@ commands:
     usage: /quest
     permission: interfass.command.quest
 
+  negative:
+    description: Open the Interfass quest interface
+    usage: /negative
+    permission: interfass.command.negative
+
 permissions:
   interfass.command.main:
     description: Allows using /interfass:interfass
@@ -34,4 +39,8 @@ permissions:
 
   interfass.menu.quest:
     description: Allows opening the Interfass quest menu
+    default: true
+
+  interfass.menu.negative:
+    description: Allows opening the Interfass negative menu
     default: true
