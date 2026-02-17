@@ -1,6 +1,6 @@
 package io.realmit.interfass.command;
 
-import io.realmit.interfass.menu.InterfassMenuInterface;
+import io.realmit.interfass.menu.MenuInterface;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -8,11 +8,11 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NonNull;
 
-public final class InterfassMenuCommand implements CommandExecutor {
+public final class MenuCommand implements CommandExecutor {
 
-    private final InterfassMenuInterface menu;
+    private final MenuInterface menu;
 
-    public InterfassMenuCommand(InterfassMenuInterface menu) {
+    public MenuCommand(MenuInterface menu) {
         this.menu = menu;
     }
 

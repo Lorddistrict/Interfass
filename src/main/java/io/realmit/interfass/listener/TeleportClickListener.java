@@ -1,6 +1,6 @@
 package io.realmit.interfass.listener;
 
-import io.realmit.interfass.menu.InterfassTeleportMenu;
+import io.realmit.interfass.menu.teleport.TeleportMenu;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
-public final class InterfassTeleportClickListener implements Listener {
+public final class TeleportClickListener implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
@@ -16,7 +16,7 @@ public final class InterfassTeleportClickListener implements Listener {
             return;
         }
 
-        if (!event.getView().title().equals(Component.text(InterfassTeleportMenu.INTERFACE_NAME))) {
+        if (!event.getView().title().equals(Component.text(TeleportMenu.INTERFACE_NAME))) {
             return;
         }
 

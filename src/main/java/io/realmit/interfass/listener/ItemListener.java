@@ -1,6 +1,6 @@
 package io.realmit.interfass.listener;
 
-import io.realmit.interfass.menu.InterfassMenu;
+import io.realmit.interfass.menu.DefaultMenu;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -14,14 +14,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
-public final class InterfassItemListener implements Listener {
+public final class ItemListener implements Listener {
     private static final Material ITEM_MATERIAL = Material.NETHER_STAR;
     private static final Component ITEM_NAME = Component.text("Open the Interfass menu");
 
-    private final InterfassMenu menu;
+    private final DefaultMenu menu;
 
-    public InterfassItemListener(
-            @NotNull InterfassMenu menu
+    public ItemListener(
+            @NotNull DefaultMenu menu
     ) {
         this.menu = menu;
     }

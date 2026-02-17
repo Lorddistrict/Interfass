@@ -1,8 +1,8 @@
 package io.realmit.interfass.constants;
 
-public final class InterfassMenuConstants {
-    private InterfassMenuConstants() {
-        throw new AssertionError("Cannot instantiate : " + InterfassMenuConstants.class);
+public final class MenuConstants {
+    private MenuConstants() {
+        throw new AssertionError("Cannot instantiate : " + MenuConstants.class);
     }
 
     public static final int ROW_SIZE = 9;

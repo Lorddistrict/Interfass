@@ -13,12 +13,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
-public final class InterfassItemListenerTeleport implements Listener {
+public final class ItemListenerTeleport implements Listener {
     private static final Material ITEM_MATERIAL = Material.WITHER_SKELETON_SKULL;
     private static final Component ITEM_NAME = Component.text("Teleport me");
     private static final Component ITEM_LORE = Component.text("This is a lore line");
 
-    public InterfassItemListenerTeleport() {
+    public ItemListenerTeleport() {
     }
 
     @EventHandler

@@ -1,5 +1,6 @@
-package io.realmit.interfass.menu;
+package io.realmit.interfass.menu.teleport;
 
+import io.realmit.interfass.menu.MenuInterface;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -10,7 +11,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
-public final class InterfassTeleportMenu implements InterfassMenuInterface
+public final class TeleportMenu implements MenuInterface
 {
     public static final String INTERFACE_NAME = "Interfass TP Menu";
 

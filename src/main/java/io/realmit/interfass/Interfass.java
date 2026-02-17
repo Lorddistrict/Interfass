@@ -3,19 +3,20 @@ package io.realmit.interfass;
 import io.realmit.interfass.api.http.ApiServer;
 import io.realmit.interfass.api.listener.PendingItemJoinListener;
 import io.realmit.interfass.api.service.PendingItemStoreService;
-import io.realmit.interfass.command.InterfassMenuCommand;
-import io.realmit.interfass.command.InterfassOfflineItemsCommand;
+import io.realmit.interfass.command.MenuCommand;
+import io.realmit.interfass.command.RedeemCommand;
 import io.realmit.interfass.config.QuestMenuConfig;
-import io.realmit.interfass.listener.InterfassItemListener;
-import io.realmit.interfass.listener.InterfassItemListenerTeleport;
-import io.realmit.interfass.listener.InterfassTeleportClickListener;
-import io.realmit.interfass.listener.passQuest.InterfassPassQuestListener;
-import io.realmit.interfass.menu.InterfassMenu;
-import io.realmit.interfass.menu.InterfassMenuInterface;
-import io.realmit.interfass.menu.InterfassTeleportMenu;
-import io.realmit.interfass.menu.passQuests.InterfassPassQuestsMenu;
+import io.realmit.interfass.listener.ItemListener;
+import io.realmit.interfass.listener.ItemListenerTeleport;
+import io.realmit.interfass.listener.TeleportClickListener;
+import io.realmit.interfass.listener.passQuest.PassQuestListener;
+import io.realmit.interfass.menu.DefaultMenu;
+import io.realmit.interfass.menu.MenuInterface;
+import io.realmit.interfass.menu.teleport.TeleportMenu;
+import io.realmit.interfass.menu.passQuests.PassQuestsMenu;
 import io.realmit.interfass.services.PlayerActionsService;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -50,42 +51,39 @@ public final class Interfass extends JavaPlugin {
         // <<< custom configs
 
         // >>> Register commands
-        InterfassMenu interfassMenu = new InterfassMenu();
+        DefaultMenu interfassMenu = new DefaultMenu();
 
+        // >>> Register commands
         registerMenuCommand("interfass", interfassMenu);
-        registerMenuCommand("teleport", new InterfassTeleportMenu());
-        registerMenuCommand("quest", new InterfassPassQuestsMenu(questMenuConfig));
-        registerMenuCommand("negative", new InterfassPassQuestsMenu(questMenuConfig));
+        registerMenuCommand("teleport", new TeleportMenu());
+        registerMenuCommand("quest", new PassQuestsMenu(questMenuConfig));
+        registerMenuCommand("negative", new PassQuestsMenu(questMenuConfig));
+        registerCommand("redeem", new RedeemCommand(playerActionsService, pendingItemStoreService));
         // <<< Register commands
 
-        // >>> interfassNegativeMenu
-        PluginCommand cmd = getCommand("redeem");
-        if (null == cmd) {
-            getLogger().severe("Command 'interfass:redeem' not found in plugin.yml, disabling plugin.");
-            return;
-        }
-        InterfassOfflineItemsCommand command = new InterfassOfflineItemsCommand(
-                playerActionsService,
-                pendingItemStoreService
-        );
-        cmd.setExecutor(command);
-        // <<< interfassNegativeMenu
-
         // Register events
-        getServer().getPluginManager().registerEvents(new InterfassItemListener(interfassMenu), this);
-        getServer().getPluginManager().registerEvents(new InterfassItemListenerTeleport(), this);
-        getServer().getPluginManager().registerEvents(new InterfassTeleportClickListener(), this);
-        getServer().getPluginManager().registerEvents(new InterfassPassQuestListener(), this);
+        getServer().getPluginManager().registerEvents(new ItemListener(interfassMenu), this);
+        getServer().getPluginManager().registerEvents(new ItemListenerTeleport(), this);
+        getServer().getPluginManager().registerEvents(new TeleportClickListener(), this);
+        getServer().getPluginManager().registerEvents(new PassQuestListener(), this);
     }
 
-    private void registerMenuCommand(String cmdName, InterfassMenuInterface interfassMenuInterface) {
+    private PluginCommand checkCommand(String cmdName) {
         PluginCommand cmd = getCommand(cmdName);
-
         if (null == cmd) {
             getLogger().severe("Command 'interfass:" + cmdName + "' not found in plugin.yml, disabling plugin.");
-            return;
         }
 
-        cmd.setExecutor(new InterfassMenuCommand(interfassMenuInterface));
+        return cmd;
+    }
+
+    private void registerCommand(String cmdName, CommandExecutor executor) {
+        PluginCommand cmd = checkCommand(cmdName);
+        cmd.setExecutor(executor);
+    }
+
+    private void registerMenuCommand(String cmdName, MenuInterface interfassMenuInterface) {
+        PluginCommand cmd = checkCommand(cmdName);
+        cmd.setExecutor(new MenuCommand(interfassMenuInterface));
     }
 }

@@ -2,6 +2,6 @@ package io.realmit.interfass.menu;
 
 import org.bukkit.entity.Player;
 
-public interface InterfassMenuInterface {
+public interface MenuInterface {
     void open(Player player);
 }

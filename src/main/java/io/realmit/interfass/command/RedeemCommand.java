@@ -1,6 +1,5 @@
 package io.realmit.interfass.command;
 
-import io.realmit.interfass.Interfass;
 import io.realmit.interfass.api.service.PendingItemStoreService;
 import io.realmit.interfass.services.PlayerActionsService;
 import net.kyori.adventure.text.Component;
@@ -14,13 +13,13 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 
-public final class InterfassOfflineItemsCommand implements CommandExecutor {
+public final class RedeemCommand implements CommandExecutor {
 
     private final PendingItemStoreService pendingItemStoreService;
     private final PlayerActionsService playerActionsService;
 
 
-    public InterfassOfflineItemsCommand(
+    public RedeemCommand(
             PlayerActionsService playerActionsService,
             PendingItemStoreService pendingItemStoreService
     ) {

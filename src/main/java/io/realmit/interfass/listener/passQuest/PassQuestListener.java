@@ -7,7 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 
-public final class InterfassPassQuestListener implements Listener {
+public final class PassQuestListener implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {

@@ -10,7 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
-public final class InterfassMenu implements InterfassMenuInterface
+public final class DefaultMenu implements MenuInterface
 {
     private static final int LINE = 9;
     private static final int CENTER_SLOT = 13;

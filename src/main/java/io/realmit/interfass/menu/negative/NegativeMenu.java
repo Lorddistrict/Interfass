@@ -1,7 +1,7 @@
 package io.realmit.interfass.menu.negative;
 
-import io.realmit.interfass.menu.InterfassMenuInterface;
-import io.realmit.interfass.services.InterfassCharRepo;
+import io.realmit.interfass.menu.MenuInterface;
+import io.realmit.interfass.enums.NegativeCharactersEnum;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
@@ -11,12 +11,12 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public final class InterfassNegativeMenu implements InterfassMenuInterface
+public final class NegativeMenu implements MenuInterface
 {
     public void open(Player player)
     {
 //        String title = InterfassCharRepo.getNeg(8) + "&0" + InterfassCharRepo.MENU_CONTAINER_27;
-        String title = InterfassCharRepo.getNeg(8) + "&f" + InterfassCharRepo.MENU_TEST;
+        String title = NegativeCharactersEnum.getNeg(8) + "&f" + NegativeCharactersEnum.MENU_TEST;
         Component titleComponent = LegacyComponentSerializer.legacyAmpersand().deserialize(title);
         Inventory inventory = Bukkit.createInventory(null, 54, titleComponent);
 

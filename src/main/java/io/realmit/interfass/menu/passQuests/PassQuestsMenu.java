@@ -1,7 +1,7 @@
 package io.realmit.interfass.menu.passQuests;
 
 import io.realmit.interfass.config.QuestMenuConfig;
-import io.realmit.interfass.menu.InterfassMenuInterface;
+import io.realmit.interfass.menu.MenuInterface;
 import io.realmit.interfass.menu.item.InterfassItem;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.Set;
 
-public class InterfassPassQuestsMenu implements InterfassMenuInterface {
+public class PassQuestsMenu implements MenuInterface {
 
     private static final String DEFAULT_ITEM_COLOR = "WHITE";
     private static final int DEFAULT_MENU_SIZE = 1;
@@ -24,7 +24,7 @@ public class InterfassPassQuestsMenu implements InterfassMenuInterface {
 
     private final QuestMenuConfig questMenuConfig;
 
-    public InterfassPassQuestsMenu(QuestMenuConfig questMenuConfig) {
+    public PassQuestsMenu(QuestMenuConfig questMenuConfig) {
         this.questMenuConfig = questMenuConfig;
     }
 

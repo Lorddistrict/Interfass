@@ -1,6 +1,6 @@
-package io.realmit.interfass.services;
+package io.realmit.interfass.enums;
 
-public enum InterfassCharRepo {
+public enum NegativeCharactersEnum {
 
     //Spacing Characters
     NEG1("\uF801"),
@@ -33,7 +33,7 @@ public enum InterfassCharRepo {
 
     public final String literal;
 
-    InterfassCharRepo(String literal) {
+    NegativeCharactersEnum(String literal) {
         this.literal = literal;
     }
 
@@ -43,40 +43,40 @@ public enum InterfassCharRepo {
     }
 
     private enum SpacingCharacters {
-        NEG1(-1, InterfassCharRepo.NEG1),
-        NEG2(-2, InterfassCharRepo.NEG2),
-        NEG4(-4, InterfassCharRepo.NEG4),
-        NEG8(-8, InterfassCharRepo.NEG8),
-        NEG16(-16, InterfassCharRepo.NEG16),
-        NEG32(-32, InterfassCharRepo.NEG32),
-        NEG64(-64, InterfassCharRepo.NEG64),
-        NEG128(-128, InterfassCharRepo.NEG128),
-        NEG256(-256, InterfassCharRepo.NEG256),
-        NEG512(-512, InterfassCharRepo.NEG512),
-        NEG1024(-1024, InterfassCharRepo.NEG1024),
+        NEG1(-1, NegativeCharactersEnum.NEG1),
+        NEG2(-2, NegativeCharactersEnum.NEG2),
+        NEG4(-4, NegativeCharactersEnum.NEG4),
+        NEG8(-8, NegativeCharactersEnum.NEG8),
+        NEG16(-16, NegativeCharactersEnum.NEG16),
+        NEG32(-32, NegativeCharactersEnum.NEG32),
+        NEG64(-64, NegativeCharactersEnum.NEG64),
+        NEG128(-128, NegativeCharactersEnum.NEG128),
+        NEG256(-256, NegativeCharactersEnum.NEG256),
+        NEG512(-512, NegativeCharactersEnum.NEG512),
+        NEG1024(-1024, NegativeCharactersEnum.NEG1024),
 
-        POS1(1, InterfassCharRepo.POS1),
-        POS2(2, InterfassCharRepo.POS2),
-        POS4(4, InterfassCharRepo.POS4),
-        POS8(8, InterfassCharRepo.POS8),
-        POS16(16, InterfassCharRepo.POS16),
-        POS32(32, InterfassCharRepo.POS32),
-        POS64(64, InterfassCharRepo.POS64),
-        POS128(128, InterfassCharRepo.POS128),
-        POS256(256, InterfassCharRepo.POS256),
-        POS512(512, InterfassCharRepo.POS512),
-        POS1024(1024, InterfassCharRepo.POS1024);
+        POS1(1, NegativeCharactersEnum.POS1),
+        POS2(2, NegativeCharactersEnum.POS2),
+        POS4(4, NegativeCharactersEnum.POS4),
+        POS8(8, NegativeCharactersEnum.POS8),
+        POS16(16, NegativeCharactersEnum.POS16),
+        POS32(32, NegativeCharactersEnum.POS32),
+        POS64(64, NegativeCharactersEnum.POS64),
+        POS128(128, NegativeCharactersEnum.POS128),
+        POS256(256, NegativeCharactersEnum.POS256),
+        POS512(512, NegativeCharactersEnum.POS512),
+        POS1024(1024, NegativeCharactersEnum.POS1024);
 
         private final int weight;
-        private final InterfassCharRepo charRef;
+        private final NegativeCharactersEnum charRef;
 
-        SpacingCharacters(int weight, InterfassCharRepo charRef) {
+        SpacingCharacters(int weight, NegativeCharactersEnum charRef) {
             this.weight = weight;
             this.charRef = charRef;
         }
     }
 
-    public static InterfassCharRepo getCharacterByWeight(int weight) {
+    public static NegativeCharactersEnum getCharacterByWeight(int weight) {
         for (SpacingCharacters ch : SpacingCharacters.values()) {
             if (ch.weight == weight)
                 return ch.charRef;
@@ -96,7 +96,7 @@ public enum InterfassCharRepo {
             int weight = (int) Math.pow(2, index);
             //if we are getting negative, flip weight
             weight = pixelAmount < 0 ? -weight : weight;
-            InterfassCharRepo ref = getCharacterByWeight(weight);
+            NegativeCharactersEnum ref = getCharacterByWeight(weight);
 
             if (ref != null)
                 sb.append(ref.literal);
