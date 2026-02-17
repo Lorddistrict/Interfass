@@ -1,6 +1,5 @@
 package io.realmit.interfass.listener;
 
-import io.realmit.interfass.services.InterfassLogger;
 import net.kyori.adventure.text.Component;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
@@ -11,7 +10,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -20,12 +18,7 @@ public final class InterfassItemListenerTeleport implements Listener {
     private static final Component ITEM_NAME = Component.text("Teleport me");
     private static final Component ITEM_LORE = Component.text("This is a lore line");
 
-    private final InterfassLogger logger;
-
-    public InterfassItemListenerTeleport(
-            @NotNull InterfassLogger logger
-    ) {
-        this.logger = logger;
+    public InterfassItemListenerTeleport() {
     }
 
     @EventHandler
@@ -55,9 +48,6 @@ public final class InterfassItemListenerTeleport implements Listener {
         }
 
         event.setCancelled(true);
-
-        logger.separator();
-        logger.info("Player " + event.getPlayer().getName() + " teleported to spawn.");
 
         World world = Bukkit.getWorlds().getFirst();
         Player player = event.getPlayer();

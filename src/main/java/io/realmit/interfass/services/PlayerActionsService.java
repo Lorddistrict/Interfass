@@ -1,0 +1,33 @@
+package io.realmit.interfass.services;
+
+import io.realmit.interfass.api.service.PendingItemStoreService;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.List;
+
+public class PlayerActionsService {
+    private final PendingItemStoreService pendingItemStoreService;
+
+    public PlayerActionsService(PendingItemStoreService pendingItemStoreService) {
+        this.pendingItemStoreService = pendingItemStoreService;
+    }
+
+    public boolean canPlayerRedeemItems(Player player) {
+        Inventory inventory = player.getInventory();
+        ItemStack[] contents = inventory.getStorageContents();
+
+        int emptySlots = 0;
+
+        for (ItemStack content : contents) {
+            if (content == null || content.getType().isAir() || content.getAmount() <= 0) {
+                emptySlots++;
+            }
+        }
+
+        List<ItemStack> itemsToGive = pendingItemStoreService.getPendingItems(player.getUniqueId());
+
+        return itemsToGive.size() <= emptySlots;
+    }
+}

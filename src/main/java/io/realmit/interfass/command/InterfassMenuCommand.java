@@ -8,11 +8,11 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NonNull;
 
-public final class InterfassCommand implements CommandExecutor {
+public final class InterfassMenuCommand implements CommandExecutor {
 
     private final InterfassMenuInterface menu;
 
-    public InterfassCommand(InterfassMenuInterface menu) {
+    public InterfassMenuCommand(InterfassMenuInterface menu) {
         this.menu = menu;
     }
 

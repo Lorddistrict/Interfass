@@ -6,6 +6,7 @@ import io.realmit.interfass.api.http.handlers.GiveItemHandler;
 import io.realmit.interfass.api.controller.GiveItemController;
 import io.realmit.interfass.api.http.handlers.SayHelloHandler;
 import io.realmit.interfass.api.service.GiveItemService;
+import io.realmit.interfass.api.service.PendingItemStoreService;
 import io.realmit.interfass.api.service.PrintMessageService;
 import org.bukkit.plugin.Plugin;
 
@@ -20,6 +21,7 @@ public final class ApiServer {
     private final int port;
     private HttpServer server;
     private ExecutorService executor;
+    private PendingItemStoreService pendingItemStoreService;
 
     public ApiServer(Plugin plugin, int port) {
         this.plugin = plugin;
@@ -30,7 +32,9 @@ public final class ApiServer {
         InetSocketAddress address = new InetSocketAddress(port);
         this.server = HttpServer.create(address, 0);
 
-        GiveItemService giveItemService = new GiveItemService(plugin);
+        this.pendingItemStoreService = new PendingItemStoreService(plugin);
+
+        GiveItemService giveItemService = new GiveItemService(plugin, pendingItemStoreService);
         GiveItemController giveItemController = new GiveItemController(giveItemService);
         GiveItemHandler giveItemHandler = new GiveItemHandler(giveItemController);
 
@@ -59,5 +63,9 @@ public final class ApiServer {
             executor = null;
         }
         plugin.getLogger().info("API server stopped");
+    }
+
+    public PendingItemStoreService getPendingItemStoreService() {
+        return pendingItemStoreService;
     }
 }

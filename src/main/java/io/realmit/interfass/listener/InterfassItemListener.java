@@ -1,6 +1,5 @@
 package io.realmit.interfass.listener;
 
-import io.realmit.interfass.services.InterfassLogger;
 import io.realmit.interfass.menu.InterfassMenu;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
@@ -19,14 +18,11 @@ public final class InterfassItemListener implements Listener {
     private static final Material ITEM_MATERIAL = Material.NETHER_STAR;
     private static final Component ITEM_NAME = Component.text("Open the Interfass menu");
 
-    private final InterfassLogger logger;
     private final InterfassMenu menu;
 
     public InterfassItemListener(
-            @NotNull InterfassLogger logger,
             @NotNull InterfassMenu menu
     ) {
-        this.logger = logger;
         this.menu = menu;
     }
 

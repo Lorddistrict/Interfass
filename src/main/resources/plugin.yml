@@ -24,6 +24,11 @@ commands:
     usage: /negative
     permission: interfass.command.negative
 
+  redeem:
+    description: Redeem items
+    usage: /redeem
+    permission: interfass.command.redeem
+
 permissions:
   interfass.command.main:
     description: Allows using /interfass:interfass
@@ -31,6 +36,10 @@ permissions:
 
   interfass.command.teleport:
     description: Allows using /interfass:teleport
+    default: true
+
+  interfass.command.redeem:
+    description: Allows using /interfass:redeem
     default: true
 
   interfass.menu.teleport:
