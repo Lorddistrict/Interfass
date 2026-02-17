@@ -14,7 +14,7 @@ public class PlayerActionsService {
         this.pendingItemStoreService = pendingItemStoreService;
     }
 
-    public boolean canPlayerRedeemItems(Player player) {
+    public int getPlayerAvailableSlots(Player player) {
         Inventory inventory = player.getInventory();
         ItemStack[] contents = inventory.getStorageContents();
 
@@ -26,6 +26,11 @@ public class PlayerActionsService {
             }
         }
 
+        return emptySlots;
+    }
+
+    public boolean canPlayerRedeemItems(Player player) {
+        int emptySlots = getPlayerAvailableSlots(player);
         List<ItemStack> itemsToGive = pendingItemStoreService.getPendingItems(player.getUniqueId());
 
         return itemsToGive.size() <= emptySlots;

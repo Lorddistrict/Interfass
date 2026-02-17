@@ -39,7 +39,13 @@ public final class RedeemCommand implements CommandExecutor {
             return true;
         }
 
+        int requiredInventorySize = pendingItemStoreService.getPendingItems(player.getUniqueId()).size();
+        int availablePlayerInventorySlots = playerActionsService.getPlayerAvailableSlots(player);
+
         if (!playerActionsService.canPlayerRedeemItems(player)) {
+            player.sendMessage(Component.text("You need " + requiredInventorySize + " available slot(s)"));
+            player.sendMessage(Component.text("Only " + availablePlayerInventorySlots + " available slot(s)"));
+
             return true;
         }
 
@@ -53,7 +59,7 @@ public final class RedeemCommand implements CommandExecutor {
             player.getInventory().addItem(item);
         }
 
-        player.sendMessage(Component.text("Vous avez reçu vos items en attente !"));
+        player.sendMessage(Component.text("You have received your items !"));
 
         return true;
     }

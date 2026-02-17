@@ -77,13 +77,13 @@ public final class Interfass extends JavaPlugin {
         return cmd;
     }
 
-    private void registerCommand(String cmdName, CommandExecutor executor) {
-        PluginCommand cmd = checkCommand(cmdName);
+    private void registerCommand(String commandName, CommandExecutor executor) {
+        PluginCommand cmd = checkCommand(commandName);
         cmd.setExecutor(executor);
     }
 
-    private void registerMenuCommand(String cmdName, MenuInterface interfassMenuInterface) {
-        PluginCommand cmd = checkCommand(cmdName);
+    private void registerMenuCommand(String commandName, MenuInterface interfassMenuInterface) {
+        PluginCommand cmd = checkCommand(commandName);
         cmd.setExecutor(new MenuCommand(interfassMenuInterface));
     }
 }
